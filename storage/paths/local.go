@@ -560,7 +560,7 @@ func (st *Local) acquireSector(ctx context.Context, sid storiface.SectorRef, exi
 	return out, storageIDs, nil
 }
 
-func (st *Local) AcquireSector(ctx context.Context, sid storage.SectorRef, existing storiface.SectorFileType, allocate storiface.SectorFileType, pathType storiface.PathType, op storiface.AcquireMode) (storiface.SectorPaths, storiface.SectorPaths, error) {
+func (st *Local) AcquireSector(ctx context.Context, sid storiface.SectorRef, existing storiface.SectorFileType, allocate storiface.SectorFileType, pathType storiface.PathType, op storiface.AcquireMode) (storiface.SectorPaths, storiface.SectorPaths, error) {
 	if allocate != storiface.FTNone || pathType != storiface.PathStorage || os.Getenv("NO_SYNC_PATCH") == "off" {
 		return st.acquireSector(ctx, sid, existing, allocate, pathType, op)
 	}
